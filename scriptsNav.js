@@ -2,7 +2,6 @@
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
 const searchInput = document.getElementById('search-input');
-const clearBtn = document.getElementById('clear-btn');
 
 // Check if elements exist before adding event listeners
 if (burger && nav) {
@@ -19,16 +18,14 @@ if (burger && nav) {
     });
 }
 
-if (searchInput && clearBtn) {
-    // Show/hide clear button based on search input value
-    searchInput.addEventListener('input', () => {
-        clearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
-    });
-
-    // Clear search input and hide clear button
-    clearBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        clearBtn.style.display = 'none';
-        searchInput.focus();
+if (searchInput) {
+    // Submit search form
+    searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            // Perform search or any other action here
+            console.log('Performing search for: ', searchInput.value);
+        }
     });
 }
+
